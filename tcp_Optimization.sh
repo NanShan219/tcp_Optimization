@@ -5,8 +5,7 @@ echo "欢迎使用TCP参数配置脚本"
 echo "请输入带宽（单位：Mbps 取VPS带宽或本地带宽最小值）："
 read bandwidth
 echo "=================="
-echo "请输入延迟"
-read ms
+
 
 # 检查是否输入了正整数
 if ! [[ "$bandwidth" =~ ^[0-9]+$ ]]; then
@@ -15,7 +14,7 @@ if ! [[ "$bandwidth" =~ ^[0-9]+$ ]]; then
 fi
 
 # 计算相关的数值
-size=$((bandwidth * 100 * ms * 2 ))
+size=$((bandwidth * 100 * 200 ))
 
 # 定义需要删除的旧配置参数
 parameters=(
