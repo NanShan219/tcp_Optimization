@@ -4,7 +4,7 @@
 
 #### 非优化线路作用不大 
 
-```
+```shell
 bash < (curl -sL https://raw.githubusercontent.com/NanShan219/tcp_Optimization/refs/heads/main/tcp_Optimization.sh)
 ```
 
