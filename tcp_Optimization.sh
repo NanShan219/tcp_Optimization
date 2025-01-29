@@ -41,7 +41,7 @@ cat >> /etc/sysctl.conf << EOF
 # TCP参数配置
 
 net.ipv4.tcp_rmem = 4096 87380 ${size}
-net.ipv4.tcp_wmem = 4096 87380 ${size}
+net.ipv4.tcp_wmem = 4096 16384 ${size}
 net.core.rmem_max = ${size}
 net.core.wmem_max = ${size}
 
