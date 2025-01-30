@@ -17,7 +17,7 @@ if ! [[ "$bandwidth" =~ ^[0-9]+$ ]]; then
 fi
 
 # 计算相关的数值
-size=$(( ( ($bandwidth * 810000) / 8 ) * ( $ms * 2) / 1000 ))
+size=$(( ( ($bandwidth * 880000) / 8 ) * ( $ms * 2) / 1000 ))
 
 # 定义需要删除的旧配置参数
 parameters=(
@@ -39,9 +39,7 @@ echo "旧的配置参数已删除"
 echo "=================="
 # 追加新的配置
 echo "正在追加新的配置参数..."
-cat > /etc/sysctl.conf << EOF
-# TCP参数配置
-
+cat >> /etc/sysctl.conf << EOF
 net.ipv4.tcp_rmem = 4096 87380 ${size}
 net.ipv4.tcp_wmem = 4096 16384 ${size}
 net.core.rmem_max = ${size}
