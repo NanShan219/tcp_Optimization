@@ -17,7 +17,7 @@ if ! [[ "$bandwidth" =~ ^[0-9]+$ ]]; then
 fi
 
 # 计算相关的数值
-size=$(( ( ($bandwidth * 720000) / 8 ) * ( $ms * 2) / 1000 ))
+size=$(( ( ($bandwidth * 800000) / 8 ) * ( $ms * 2) / 1000 ))
 
 # 定义需要删除的旧配置参数
 parameters=(
@@ -27,6 +27,7 @@ parameters=(
     "net.core.wmem_max"
     "net.core.default_qdisc"
     "net.ipv4.tcp_congestion_control"
+    "net.ipv4.tcp_moderate_rcvbuf"
 )
 
 # 删除旧的配置参数
@@ -40,11 +41,11 @@ echo "=================="
 # 追加新的配置
 echo "正在追加新的配置参数..."
 cat >> /etc/sysctl.conf << EOF
+net.ipv4.tcp_moderate_rcvbuf=1
 net.ipv4.tcp_rmem = 4096 87380 ${size}
 net.ipv4.tcp_wmem = 4096 16384 ${size}
-net.core.rmem_max = ${size}
-net.core.wmem_max = ${size}
-
+net.core.rmem_max = 16777216
+net.core.wmem_max = 16777216
 net.core.default_qdisc = fq
 net.ipv4.tcp_congestion_control = bbr
 EOF
