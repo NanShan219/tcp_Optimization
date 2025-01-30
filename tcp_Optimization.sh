@@ -17,7 +17,7 @@ if ! [[ "$bandwidth" =~ ^[0-9]+$ ]]; then
 fi
 
 # 计算相关的数值
-size=$(( ( ($bandwidth * 880000) / 8 ) * ( $ms * 2) / 1000 ))
+size=$(( ( ($bandwidth * 720000) / 8 ) * ( $ms * 2) / 1000 ))
 
 # 定义需要删除的旧配置参数
 parameters=(
