@@ -17,7 +17,7 @@ if ! [[ "$bandwidth" =~ ^[0-9]+$ ]]; then
 fi
 
 # 计算相关的数值
-size=$(( ( ($bandwidth * 1048576) / 8 ) * ( $ms * 2) / 1000 ))
+size=$(( ( $bandwidth * 110000 ) * ( $ms * 2) / 1000 ))
 
 # 定义需要删除的旧配置参数
 parameters=(
@@ -29,6 +29,9 @@ parameters=(
     "net.ipv4.tcp_congestion_control"
     "net.ipv4.tcp_moderate_rcvbuf"
     "net.ipv4.tcp_window_scaling"
+    "net.ipv4.tcp_fastopen"
+    "net.ipv4.tcp_sack"
+    "net.ipv4.tcp_fack"
 )
 
 # 删除旧的配置参数
@@ -47,7 +50,10 @@ net.ipv4.tcp_rmem = 4096 87380 ${size}
 net.ipv4.tcp_wmem = 4096 16384 ${size}
 net.core.rmem_max = 16777216
 net.core.wmem_max = 16777216
-net.core.default_qdisc = cake
+net.ipv4.tcp_fastopen=3
+net.ipv4.tcp_sack=1  
+net.ipv4.tcp_fack=1
+net.core.default_qdisc = fq
 net.ipv4.tcp_window_scaling=1
 net.ipv4.tcp_congestion_control = bbr
 EOF
