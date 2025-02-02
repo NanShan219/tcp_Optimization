@@ -27,11 +27,7 @@ parameters=(
     "net.core.wmem_max"
     "net.core.default_qdisc"
     "net.ipv4.tcp_congestion_control"
-    "net.ipv4.tcp_moderate_rcvbuf"
     "net.ipv4.tcp_window_scaling"
-    "net.ipv4.tcp_fastopen"
-    "net.ipv4.tcp_sack"
-    "net.ipv4.tcp_fack"
 )
 
 # 删除旧的配置参数
@@ -45,14 +41,10 @@ echo "=================="
 # 追加新的配置
 echo "正在追加新的配置参数..."
 cat >> /etc/sysctl.conf << EOF
-#net.ipv4.tcp_moderate_rcvbuf=1
 net.ipv4.tcp_rmem = 4096 87380 ${size}
 net.ipv4.tcp_wmem = 4096 16384 ${size}
 net.core.rmem_max = ${size}
 net.core.wmem_max = ${size}
-#net.ipv4.tcp_fastopen=3
-#net.ipv4.tcp_sack=1  
-#net.ipv4.tcp_fack=1
 net.core.default_qdisc = fq
 net.ipv4.tcp_window_scaling=1
 net.ipv4.tcp_congestion_control = bbr
