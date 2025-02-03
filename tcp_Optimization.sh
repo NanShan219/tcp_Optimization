@@ -18,6 +18,7 @@ fi
 
 # 计算相关的数值
 size=$(( ( $bandwidth * 100000 ) * ( $ms * 2) / 1000 ))
+max_size=$(( $size * 2 ))
 
 # 定义需要删除的旧配置参数
 parameters=(
@@ -43,8 +44,8 @@ echo "正在追加新的配置参数..."
 cat >> /etc/sysctl.conf << EOF
 net.ipv4.tcp_rmem = 4096 87380 ${size}
 net.ipv4.tcp_wmem = 4096 16384 ${size}
-net.core.rmem_max = ${size} * 2
-net.core.wmem_max = ${size} * 2
+net.core.rmem_max = ${max_size} 
+net.core.wmem_max = ${max_size}
 net.ipv4.tcp_window_scaling=1
 net.core.default_qdisc = fq
 net.ipv4.tcp_congestion_control = bbr
