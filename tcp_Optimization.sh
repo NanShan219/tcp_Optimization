@@ -37,6 +37,8 @@ parameters=(
     "net.ipv4.tcp_frto"
     "net.ipv4.tcp_rfc1337"
     "net.ipv4.tcp_adv_win_scale"
+    "net.ipv4.tcp_rmem"
+    "net.ipv4.tcp_wmem"
     
 )
 
@@ -51,6 +53,8 @@ echo "=================="
 # 追加新的配置
 echo "正在追加新的配置参数..."
 cat >> /etc/sysctl.conf << EOF
+net.ipv4.tcp_rmem = 4096 87380 16777216
+net.ipv4.tcp_wmem = 4096 16384 16777216
 net.core.rmem_max=16777216            # 设置接收缓冲区最大值为 16MB
 net.core.wmem_max=16777216            # 设置发送缓冲区最大值为 16MB
 net.ipv4.tcp_no_metrics_save=1        # 不使用旧连接数据，保证新连接稳定
