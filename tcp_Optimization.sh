@@ -64,8 +64,8 @@ net.ipv4.tcp_fack=1                   # 启用 FACK，配合 SACK 进一步优�
 net.ipv4.tcp_window_scaling=1         # 启用窗口缩放，保证高带宽连接的稳定性
 net.ipv4.tcp_adv_win_scale=-2         # 使用更保守的 TCP 窗口调整策略
 net.ipv4.tcp_moderate_rcvbuf=1        # 自动调整接收缓冲区，提高吞吐量并适应不同环境
-net.core.default_qdisc = fq_pie       # 使用 fq_pie 算法作为队列管理器
-net.ipv4.tcp_congestion_control = bbr  # 使用 BBR 拥塞控制算法
+net.core.default_qdisc=fq_pie       # 使用 fq_pie 算法作为队列管理器
+net.ipv4.tcp_congestion_control=bbr  # 使用 BBR 拥塞控制算法
 EOF
 echo "=================="
 # 生效配置
