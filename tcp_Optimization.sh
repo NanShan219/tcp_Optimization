@@ -9,7 +9,6 @@ echo "请输入ping值（单位：ms 本地到vps）："
 read ms
 echo "=================="
 
-
 # 检查是否输入了正整数
 if ! [[ "$bandwidth" =~ ^[0-9]+$ ]]; then
     echo "错误：请输入一个正整数作为带宽值！"
@@ -44,7 +43,8 @@ echo "旧的配置参数已删除"
 echo "=================="
 # 追加新的配置
 echo "正在追加新的配置参数..."
-cat >> /etc/sysctl.conf << EOF
+
+cat >> /etc/sysctl.conf << 'EOF'
 #net.ipv4.tcp_moderate_rcvbuf=1
 net.ipv4.tcp_rmem = 4096 87380 ${size}
 net.ipv4.tcp_wmem = 4096 16384 ${size}
