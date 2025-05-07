@@ -44,7 +44,7 @@ echo "=================="
 # 追加新的配置
 echo "正在追加新的配置参数..."
 
-cat > /etc/sysctl.conf << EOF
+cat >> /etc/sysctl.conf << EOF
 #net.ipv4.tcp_moderate_rcvbuf=1
 net.ipv4.tcp_rmem = 4096 87380 ${size}
 net.ipv4.tcp_wmem = 4096 16384 ${size}
