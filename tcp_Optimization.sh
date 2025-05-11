@@ -18,33 +18,11 @@ fi
 # 计算相关的数值
 size=$(( ( $bandwidth * 88000 ) * ( $ms * 2) / 1000 ))
 
-# 定义需要删除的旧配置参数
-parameters=(
-    "net.ipv4.tcp_rmem"
-    "net.ipv4.tcp_wmem"
-    "net.core.rmem_max"
-    "net.core.wmem_max"
-    "net.core.default_qdisc"
-    "net.ipv4.tcp_congestion_control"
-    "net.ipv4.tcp_moderate_rcvbuf"
-    "net.ipv4.tcp_window_scaling"
-    "net.ipv4.tcp_fastopen"
-    "net.ipv4.tcp_sack"
-    "net.ipv4.tcp_fack"
-)
 
-# 删除旧的配置参数
-echo "正在删除旧的配置参数..."
-for param in "${parameters[@]}"; do
-    sed -i "/^$param/d" /etc/sysctl.conf
-done
-echo "=================="
-echo "旧的配置参数已删除"
-echo "=================="
-# 追加新的配置
-echo "正在追加新的配置参数..."
+# 替换配置参数
+echo "正在替换新的配置参数...注意 会覆盖原有配置"
 
-cat >> /etc/sysctl.conf << EOF
+cat > /etc/sysctl.conf << EOF
 net.ipv4.tcp_moderate_rcvbuf=1
 net.ipv4.tcp_rmem = 4096 87380 ${size}
 net.ipv4.tcp_wmem = 4096 16384 ${size}
