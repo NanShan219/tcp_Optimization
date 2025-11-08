@@ -26,8 +26,8 @@ cat > /etc/sysctl.conf << EOF
 net.ipv4.tcp_moderate_rcvbuf=1
 net.ipv4.tcp_rmem = 4096 87380 ${size}
 net.ipv4.tcp_wmem = 4096 16384 ${size}
-net.core.rmem_max = ${size}*2
-net.core.wmem_max = ${size}*2
+net.core.rmem_max = ${size*2}
+net.core.wmem_max = ${size*2}
 net.core.default_qdisc = fq_pie
 net.ipv4.tcp_window_scaling=1
 net.ipv4.tcp_congestion_control = bbr
