@@ -16,7 +16,7 @@ if ! [[ "$bandwidth" =~ ^[0-9]+$ ]]; then
 fi
 
 # 计算相关的数值
-size=$(( ( $bandwidth * 88000 ) * ( $ms * 2) / 1000 ))
+size=$(( ( $bandwidth * 100000 ) * ( $ms * 2) / 1000 ))
 
 
 # 替换配置参数
@@ -28,7 +28,7 @@ net.ipv4.tcp_rmem = 4096 87380 ${size}
 net.ipv4.tcp_wmem = 4096 16384 ${size}
 net.core.rmem_max = ${size}
 net.core.wmem_max = ${size}
-net.core.default_qdisc = fq
+net.core.default_qdisc = fq_pie
 net.ipv4.tcp_window_scaling=1
 net.ipv4.tcp_congestion_control = bbr
 EOF
