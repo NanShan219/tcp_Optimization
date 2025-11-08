@@ -28,7 +28,7 @@ net.ipv4.tcp_rmem = 4096 87380 ${size}
 net.ipv4.tcp_wmem = 4096 16384 ${size}
 net.core.rmem_max = ${size}
 net.core.wmem_max = ${size}
-net.core.default_qdisc = fq_pie
+net.core.default_qdisc = cake
 net.ipv4.tcp_window_scaling=1
 net.ipv4.tcp_congestion_control = bbr
 EOF
